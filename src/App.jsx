@@ -4,15 +4,10 @@ import Index from "./pages/Index";
 import "./App.css";
 import io from "socket.io-client";
 import RoomList from "./pages/RoomList";
-import { useEffect } from "react";
 
-const socket = io(import.meta.env.VITE_API_URL);
+const socket = io("https://bem-chat.azurewebsites.net");
 
 function App() {
-  useEffect(() => {
-    console.log(import.meta.env.VITE_API_URL);
-    console.log(import.meta.env.MODE);
-  }, []);
   return (
     <>
       <Route path="/chat" component={Index} />
