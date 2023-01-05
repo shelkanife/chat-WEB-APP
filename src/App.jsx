@@ -1,4 +1,4 @@
-import { Link, Route, Router } from "wouter";
+import { Link, Redirect, Route, Router } from "wouter";
 import Chat from "./pages/Chat";
 import Index from "./pages/Index";
 import "./App.css";
@@ -10,6 +10,9 @@ const socket = io("https://bem-chat.azurewebsites.net");
 function App() {
   return (
     <>
+      <Route path="/">
+        <Redirect to="/chat"></Redirect>
+      </Route>
       <Route path="/chat" component={Index} />
       <Router base="/rooms" key="rooms">
         <Route path="/" component={RoomList}></Route>
