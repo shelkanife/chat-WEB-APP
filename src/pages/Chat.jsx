@@ -34,11 +34,12 @@ const Chat = ({ socket }) => {
   const leaveChat = async () => {
     const roomName = location.slice(1);
     const queryStringObj = new URLSearchParams(window.location.search);
-    await requestTo(`${roomName}/disconect`, "POST", {
+    const response = await requestTo(`${roomName}/disconect`, "POST", {
       roomName,
-      nickname: queryStringObj.nickname,
+      nickname: Object.fromEntries( queryStringObj).nickname,
     });
     socket.emit("room.list", roomName);
+    
     navigate("/");
   };
 

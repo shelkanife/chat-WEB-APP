@@ -26,7 +26,10 @@ const RoomList = () => {
     e.preventDefault();
     const response = await requestTo("join", "POST", { nickname, roomName });
     if (response.status === 200) navigate(`/${roomName}?nickname=${nickname}`);
-    else showError((await response.json()).msg);
+    else{
+      showError((await response.json()).msg);
+      window.location.reload()
+    }
   };
   return (
     <main className="room-list-wrapper">
