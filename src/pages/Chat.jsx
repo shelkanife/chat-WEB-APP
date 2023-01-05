@@ -4,12 +4,11 @@ import Messages from "../components/Messages";
 import UserInput from "../components/UserInput";
 import { requestTo } from "../services/rooms";
 import { useLocation } from "wouter";
-import UserList from "../components/UsersList";
+import SideBar from "../components/SideBar";
 
 const Chat = ({ socket }) => {
   const [location, navigate] = useLocation();
   const [messages, setMessages] = useState([]);
-  const [users, setUsers] = useState([]);
   useEffect(() => {
     async function existsRoom() {
       const response = await requestTo(location.slice(1), "GET");
@@ -24,12 +23,6 @@ const Chat = ({ socket }) => {
       setMessages([...messages, { msg, mine: false }])
     );
   }, [socket, messages]);
-
-  useEffect(() => {
-    socket.on("room.listUsers", (users) => {
-      setUsers([...users]);
-    });
-  }, [socket, users]);
 
   const sendMessage = (e, msg) => {
     e.preventDefault();
@@ -56,7 +49,7 @@ const Chat = ({ socket }) => {
         <Messages messages={messages} />
         <UserInput fnc={sendMessage} />
       </main>
-      <UserList users={users} />
+      <SideBar socket={socket} />
     </>
   );
 };

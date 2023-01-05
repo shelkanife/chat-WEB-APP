@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 
-const UserList = ({ users }) => {
+const SideBar = ({ socket }) => {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    socket.on("room.listUsers", (users) => {
+      setUsers([...users]);
+    });
+  }, [socket, users]);
+
   return (
     <aside>
       <h6>On this chat</h6>
@@ -13,4 +20,4 @@ const UserList = ({ users }) => {
   );
 };
 
-export default UserList;
+export default SideBar;
