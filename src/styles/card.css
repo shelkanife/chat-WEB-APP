@@ -1,0 +1,23 @@
+.card {
+  background-color: rgb(225, 223, 223);
+  width: 40%;
+  height: 300px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px;
+}
+.card:hover {
+  box-shadow: 10px 10px 5px 5px rgb(219, 210, 210),
+    -10px -10px 5px 5px rgb(219, 210, 210);
+}
+.cards-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  height: 80%;
+  align-items: center;
+}

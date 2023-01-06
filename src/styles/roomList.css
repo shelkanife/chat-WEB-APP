@@ -1,0 +1,30 @@
+.room-list-wrapper {
+  padding: 0 8%;
+}
+.room-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  height: 150px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fefefe;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.room-item button {
+  background-color: black;
+  color: white;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 100%;
+}
+.room-item button:hover {
+  background-color: #888;
+  color: black;
+}
+.room-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 10px;
+}
