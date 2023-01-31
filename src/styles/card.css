@@ -1,15 +1,19 @@
 .card {
   background-color: rgb(225, 223, 223);
   width: 40%;
-  height: 300px;
-  border-radius: 8px;
+  border-radius: 1rem;
   cursor: pointer;
   font-size: 20px;
   transition: all 0.2s;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  min-height: 40%;
+  border-radius: 1rem;
+  flex-basis: 300px;
+  color: black;
 }
 .card:hover {
   box-shadow: 10px 10px 5px 5px rgb(219, 210, 210),
@@ -20,4 +24,12 @@
   justify-content: space-evenly;
   height: 80%;
   align-items: center;
+}
+.index-icon {
+  flex: 1;
+  font-size: clamp(2rem, 3rem, 5rem);
+  line-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  display: flex !important;
 }

@@ -1,0 +1,44 @@
+aside {
+  padding: 0 1%;
+  width: clamp(220px, 300px, 50%);
+  color: #fff;
+  background-color: #192228;
+  border-top-right-radius: 0.5rem;
+  height: 100%;
+}
+.show {
+  right: 1%;
+  transition: all 0.2s;
+}
+#aside-btn {
+  display: none;
+}
+#sidebar-title {
+  height: 4rem;
+  text-align: center;
+}
+#sidebar {
+  min-height: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+}
+#aside-btn {
+  width: 100%;
+}
+@media only screen and (max-width: 768px) {
+  aside {
+    position: absolute;
+    right: -100%;
+    transition: all 0.2s;
+    border-top-left-radius: 0.5rem;
+  }
+  #show-users {
+    display: flex;
+  }
+  #leave {
+    display: none;
+  }
+  #aside-btn {
+    display: block;
+  }
+}

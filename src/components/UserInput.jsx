@@ -1,9 +1,7 @@
 import { useState } from "react";
 
 const UserInput = ({ fnc }) => {
-  const handleChange = (e) => {
-    setMessage(e.target.value);
-  };
+  const handleChange = (e) => setMessage(e.target.value);
   const [message, setMessage] = useState("");
   return (
     <form

@@ -1,5 +1,5 @@
 .room-list-wrapper {
-  padding: 0 8%;
+  padding: 8%;
 }
 .room-item {
   display: flex;
@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fefefe;
-  border-radius: 5px;
+  border-radius: 1rem;
   padding: 5px 10px;
 }
 .room-item button {
@@ -25,6 +25,10 @@
 }
 .room-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  column-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  column-gap: 1rem;
+}
+.room-list-no-room {
+  display: flex;
+  flex-direction: column;
 }

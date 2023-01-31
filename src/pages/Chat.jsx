@@ -9,6 +9,8 @@ import SideBar from "../components/SideBar";
 const Chat = ({ socket }) => {
   const [location, navigate] = useLocation();
   const [messages, setMessages] = useState([]);
+  const [show, setShow] = useState(false);
+  const showUsers = (value) => setShow(value);
   useEffect(() => {
     async function existsRoom() {
       const response = await requestTo(location.slice(1), "GET");
@@ -34,24 +36,33 @@ const Chat = ({ socket }) => {
   const leaveChat = async () => {
     const roomName = location.slice(1);
     const queryStringObj = new URLSearchParams(window.location.search);
-    const response = await requestTo(`${roomName}/disconect`, "POST", {
+    await requestTo(`${roomName}/disconect`, "POST", {
       roomName,
-      nickname: Object.fromEntries( queryStringObj).nickname,
+      nickname: Object.fromEntries(queryStringObj).nickname,
     });
     socket.emit("room.list", roomName);
-    
-    navigate("/");
+
+    navigate("/", { replace: true });
   };
 
   return (
-    <>
+    <div id="chat-wrapper">
       <main>
-        <Header roomName={location.slice(1)} fnc={leaveChat} />
+        <Header
+          roomName={location.slice(1)}
+          fnc={leaveChat}
+          showUsers={showUsers}
+        />
         <Messages messages={messages} />
         <UserInput fnc={sendMessage} />
       </main>
-      <SideBar socket={socket} />
-    </>
+      <SideBar
+        socket={socket}
+        showUsers={show}
+        fnc={leaveChat}
+        show={showUsers}
+      />
+    </div>
   );
 };
 

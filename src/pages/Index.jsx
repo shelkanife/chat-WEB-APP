@@ -1,9 +1,10 @@
-import { useState } from "react";
-import Card from "../components/Card";
-import Modal from "../components/Modal";
+import { useState, lazy, Suspense } from "react";
 import { requestTo } from "../services/rooms";
 import { useLocation } from "wouter";
-import { Link } from "wouter";
+import Card from "../components/Card";
+import "../styles/index.css";
+
+const Modal = lazy(() => import("../components/Modal"));
 
 const Index = ({ socket }) => {
   const [show, setShow] = useState(false);
@@ -30,42 +31,56 @@ const Index = ({ socket }) => {
   };
 
   return (
-    <main>
-      <header>
+    <>
+      <header className="index-header">
         <h1>Chat rooms</h1>
       </header>
-      <section className="cards-wrapper">
-        <Card text="Create a new romm" fnc={() => setShow(true)} />
-        <Card text="Join to a room" fnc={() => navigate("/rooms")} />
-      </section>
-      <Modal
-        show={show}
-        fnc={() => setShow(false)}
-        socket={socket}
-        onSubmit={createRoom}
-        title="Create new room"
-        btnText="Create"
-      >
-        <div class="form-control">
-          <label>Nickname</label>
-          <input
-            type="text"
-            name="nickname"
-            id="nickname"
-            onChange={(e) => setNickname(e.target.value)}
+      <main className="index-main">
+        <section id="cards-wrapper">
+          <Card
+            text="Create a new room"
+            fnc={() => setShow(true)}
+            iconClass="fa-solid fa-circle-plus"
           />
-        </div>
-        <div class="form-control">
-          <label>Room name</label>
-          <input
-            type="text"
-            name="roomName"
-            id="roomname"
-            onChange={(e) => setRoomName(e.target.value)}
+          <Card
+            text="Join to a room"
+            fnc={() => navigate("/rooms")}
+            iconClass="fa-solid fa-right-to-bracket"
           />
-        </div>
-      </Modal>
-    </main>
+        </section>
+        <Suspense fallback={<div>Loading ...</div>}>
+          {show && (
+            <Modal
+              show={show}
+              fnc={() => setShow(false)}
+              socket={socket}
+              onSubmit={createRoom}
+              title="Create new room"
+              btnText="Create"
+            >
+              <div class="form-control">
+                <label>Nickname</label>
+                <input
+                  type="text"
+                  name="nickname"
+                  id="nickname"
+                  onChange={(e) => setNickname(e.target.value)}
+                />
+              </div>
+              <div class="form-control">
+                <label>Room name</label>
+                <input
+                  type="text"
+                  name="roomName"
+                  id="roomname"
+                  onChange={(e) => setRoomName(e.target.value)}
+                />
+              </div>
+            </Modal>
+          )}
+        </Suspense>
+      </main>
+    </>
   );
 };
 
