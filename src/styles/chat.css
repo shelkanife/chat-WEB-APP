@@ -106,6 +106,7 @@ p.in {
   background-color: #d6cccc;
   word-break: break-word;
   white-space: break-spaces;
+  color:#000;
 }
 p.out {
   background-color: #059ce2;
